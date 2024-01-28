@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service-green
+  namespace: default
+spec:
+  selector:
+    app: sample-deployment
+    version: green
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
