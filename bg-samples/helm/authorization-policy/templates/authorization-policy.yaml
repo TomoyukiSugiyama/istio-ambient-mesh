@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: test-authorization-policy
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: sample-deployment
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/default/sa/accept-test-service-account
+        - cluster.local/ns/istio-system/sa/sample-gateway-istio
+
