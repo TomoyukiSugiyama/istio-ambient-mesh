@@ -1,20 +1,18 @@
-# deploy deployment and service
+# apply deployment and service
 
 ```bash
 helm template --set color=blue helm/app | kubectl apply -f -
 helm template --set color=green helm/app | kubectl apply -f -
 ```
 
-# deploy gateway and httpRoute
+# apply gateway and httpRoute
 
 ```bash
 helm template helm/gateway | kubectl apply -f -
 helm template helm/route | kubectl apply -f -
 ```
 
-# deploy L4 AathorizationPolicy
-
-## deploy curl app
+# apply curl app
 
 ```bash
 helm template  --set name=accept-test helm/test | kubectl apply -f -
@@ -41,7 +39,7 @@ kubectl exec deployments/deny-test-deployment -- curl -s http://sample-gateway-i
 kubectl exec deployments/deny-test-deployment -- curl -s http://sample-gateway-istio.istio-system.svc.cluster.local -H "version:green"
 ```
 
-## apply L4 AuthorizationPolicy
+# apply L4 AuthorizationPolicy
 
 accept from:
 
@@ -52,6 +50,8 @@ accept from:
 ```
 helm template helm/authorization-policy | kubectl apply -f -
 ```
+
+# access test
 
 ## success
 
