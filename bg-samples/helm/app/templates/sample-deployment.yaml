@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment-{{ .Values.color }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-deployment
+      version: {{ .Values.color }}
+  template:
+    metadata:
+      labels:
+        app: sample-deployment
+        version: {{ .Values.color }}
+    spec:
+      containers:
+      - name: sample-deployment
+        image: nginx:1.25.3
+        ports:
+        - containerPort: 80
